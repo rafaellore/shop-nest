@@ -1,8 +1,4 @@
-interface User {
-  name: string;
-  email: string;
-  password: string;
-}
+import { User } from '../types/user.type';
 
 export class UserRepository {
   private users = [] as User[];
@@ -10,5 +6,9 @@ export class UserRepository {
   async save(user) {
     this.users.push(user);
     console.log(this.users);
+  }
+
+  async list() {
+    return this.users;
   }
 }
