@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { User } from '../types/user.type';
+import { UserEntity } from './user.entity';
 
 @Injectable()
 export class UserRepository {
-  private users = [] as User[];
+  private users = [] as UserEntity[];
 
   async save(user) {
     this.users.push(user);
