@@ -19,4 +19,24 @@ export class UserRepository {
 
     return possibleUser !== undefined;
   }
+
+  async update(id: string, updateData: Partial<UserEntity>) {
+    const possiblyUser = this.users.find(
+      (usuarioSalvo) => usuarioSalvo.id === id,
+    );
+
+    if (!possiblyUser) {
+      throw new Error('Usuário não existe');
+    }
+
+    Object.entries(updateData).forEach(([key, value]) => {
+      if (key === 'id') {
+        return;
+      }
+
+      possiblyUser[key] = value;
+    });
+
+    return possiblyUser;
+  }
 }
