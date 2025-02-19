@@ -19,14 +19,14 @@ export class UserController {
   constructor(private userRepository: UserRepository) {}
 
   @Post()
-  async createUser(@Body() userData: CreateUserDTO) {
+  createUser(@Body() userData: CreateUserDTO) {
     const userEntity = new UserEntity();
     userEntity.email = userData.email;
     userEntity.password = userData.password;
     userEntity.name = userData.name;
     userEntity.id = uuid();
 
-    await this.userRepository.save(userEntity);
+    this.userRepository.save(userEntity);
 
     return {
       id: userEntity.id,
@@ -35,8 +35,8 @@ export class UserController {
   }
 
   @Get()
-  async listUsers() {
-    const returnedUsers = await this.userRepository.list();
+  listUsers() {
+    const returnedUsers = this.userRepository.list();
     const listUsers = returnedUsers.map(
       (user) => new ListUserDTO(user.id, user.name),
     );
@@ -45,8 +45,8 @@ export class UserController {
   }
 
   @Put('/:id')
-  async updateUser(@Param('id') id: string, @Body() newData: UpdateUserDTO) {
-    const updatedUser = await this.userRepository.update(id, newData);
+  updateUser(@Param('id') id: string, @Body() newData: UpdateUserDTO) {
+    const updatedUser = this.userRepository.update(id, newData);
 
     return {
       user: updatedUser,
@@ -55,8 +55,8 @@ export class UserController {
   }
 
   @Delete('/:id')
-  async removeUsuario(@Param('id') id: string) {
-    const removedUser = await this.userRepository.remove(id);
+  removeUsuario(@Param('id') id: string) {
+    const removedUser = this.userRepository.remove(id);
 
     return {
       user: removedUser,

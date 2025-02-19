@@ -12,14 +12,14 @@ export class UserEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ name: 'nome', length: 100, nullable: false })
-  nome: string;
+  @Column({ name: 'name', length: 100, nullable: false })
+  name: string;
 
   @Column({ name: 'email', length: 70, nullable: false })
   email: string;
 
-  @Column({ name: 'senha', length: 255, nullable: false })
-  senha: string;
+  @Column({ name: 'password', length: 255, nullable: false })
+  password: string;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: string;

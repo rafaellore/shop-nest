@@ -5,16 +5,16 @@ import { UserEntity } from './user.entity';
 export class UserRepository {
   private users = [] as UserEntity[];
 
-  async save(user) {
+  save(user) {
     this.users.push(user);
     console.log(this.users);
   }
 
-  async list() {
+  list() {
     return this.users;
   }
 
-  async existWithEmail(email: string) {
+  existWithEmail(email: string) {
     const possibleUser = this.users.find((user) => user.email === email);
 
     return possibleUser !== undefined;
@@ -30,7 +30,7 @@ export class UserRepository {
     return possiblyUser;
   }
 
-  async update(id: string, updateData: Partial<UserEntity>) {
+  update(id: string, updateData: Partial<UserEntity>) {
     const user = this.findById(id);
 
     Object.entries(updateData).forEach(([key, value]) => {
@@ -44,7 +44,7 @@ export class UserRepository {
     return user;
   }
 
-  async remove(id: string) {
+  remove(id: string) {
     const user = this.findById(id);
     this.users = this.users.filter((usuarioSalvo) => usuarioSalvo.id !== id);
 
