@@ -24,15 +24,14 @@ export class ProductController {
   }
 
   @Post()
-  async createProduct(@Body() productData: CreateProductDTO) {
+  createProduct(@Body() productData: CreateProductDTO) {
     const productEntity = new ProductEntity();
     productEntity.id = uuid();
     productEntity.name = productData.name;
     productEntity.value = productData.value;
-    productEntity.type = productData.type;
     productEntity.description = productData.description;
 
-    const createdProduct = await this.repo.create(productEntity);
+    const createdProduct = this.repo.create(productEntity);
 
     return {
       createdProduct,
